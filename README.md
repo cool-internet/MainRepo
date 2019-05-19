@@ -1,8 +1,17 @@
 # MainRepo
-## How to deploy
-LOCAL EXECUTE:
+## Introduction
+### How to deploy
+Input locally
+```
 drone exec [command options] [path/to/.drone.yml]
-## Configuration
+```
+to build the drone project with the procedure defined in .drone.yml. .drone.yml often contain some operations like 
+```
+make
+make test
+```
+to confirm the property of a program.
+### Configuration
 Input these statements 
 ```
 export DRONE_SERVER=http://202.120.40.8:30331
@@ -16,4 +25,8 @@ drone repo ls github
 to check whether the configuration has been set.
 ![](/pic/ls.JPG "ls sample")
 
-## Sample
+### Sample
+
+## Dependency
+- Drone
+- Github
