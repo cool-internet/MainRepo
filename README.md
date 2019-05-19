@@ -1,3 +1,2 @@
-# MainRepo
 ## CI Tool
-More information is located at `CI` branch.
+Just click [here](http://202.120.40.8:30331)
