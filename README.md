@@ -18,7 +18,7 @@ export DRONE_SERVER=http://202.120.40.8:30331
 export DRONE_TOKEN=dtar788Anxv5D1n7VRmvjKhSB******
 ```
 into the shell which configure the drone.    
-Then input 
+You can also input 
 ```
 drone repo ls github
 ```
