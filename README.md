@@ -5,10 +5,16 @@ Input locally
 ```
 drone exec [command options] [path/to/.drone.yml]
 ```
-to build the drone project with the procedure defined in .drone.yml. .drone.yml often contain some operations like 
+to build the drone project with the procedure defined in .drone.yml. .drone.yml often contains some operations like 
 ```
-make
-make test
+kind: pipeline
+name: default
+steps:
+- name: test
+  image: maven:3-jdk-10
+  commands:
+  - mvn install
+  - mvn test
 ```
 to confirm the property of a program.
 ### Configuration
