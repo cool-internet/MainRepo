@@ -1,7 +1,7 @@
 # MainRepo
 ## Introduction
 ### How to deploy
-Input locally
+At the root path of repo, input locally
 ```
 drone exec [command options] [path/to/.drone.yml]
 ```
@@ -36,10 +36,12 @@ to check the repo.
 ![](/pic/ls.JPG "ls sample")
 
 ### Sample
-Here I attempt a demo in C using my Cache Lab as an example
+Here I attempt a demo in Java image using simplified form as an example
 ```
 drone exec --pipeline default ./drone.yml
 ```
+![](/pic/demo.JPG "Output")
+![](/pic/demores.JPG "Class file remain")
 ## Dependency
 - Drone
 - Github
