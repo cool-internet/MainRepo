@@ -5,5 +5,9 @@ eureka:
   client:
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+#    register-with-eureka: false
 server:
   port: 8761
+spring:
+  application:
+    name: service-erueka
