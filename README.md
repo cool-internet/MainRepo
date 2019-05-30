@@ -1,11 +1,23 @@
 ## Load Balance
 ### What to use
 [Ribbon](https://github.com/Netflix/ribbon)
+
+[Feign](https://github.com/OpenFeign/feign)
 ### How to use
 #### Add dependency packages
 `pom.xml`:
 ```xml
 <dependencies>
+        <!--feign dependencies-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-openfeign-core</artifactId>
+            <version>2.1.1.RELEASE</version>
+        </dependency>
         <!--ribbon dependency-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -81,3 +93,12 @@ public class BookstoreService {
 }
 ```
 `service-bookstore` will be translated to the ip address registered in consul.
+
+But with `Feign`, `BookstoreService` only needs to write:
+```java
+@FeignClient(value = "service-bookstore")
+public interface BookstoreService {
+    @GetMapping(value = "/storages")
+    String getStorageContent();
+}
+```
