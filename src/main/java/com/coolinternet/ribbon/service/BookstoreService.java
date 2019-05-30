@@ -9,7 +9,7 @@ public class BookstoreService {
     @Autowired
     RestTemplate restTemplate;
 
-    public String getHelloContent(){
-        return restTemplate.getForObject("http://SERVICE-BOOKSTORE/",String.class);
+    public String getStorageContent(){
+        return restTemplate.getForObject("http://service-bookstore/storages",String.class);
     }
 }
