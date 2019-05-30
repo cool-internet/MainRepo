@@ -1,0 +1,11 @@
+server:
+  port: 8091
+spring:
+  application:
+    name: ribbon
+  cloud:
+    consul:
+      discovery:
+        service-name: service-ribbon
+      host: localhost
+      port: 8500
