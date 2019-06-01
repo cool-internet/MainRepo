@@ -3,11 +3,29 @@
 [Ribbon](https://github.com/Netflix/ribbon)
 
 [Feign](https://github.com/OpenFeign/feign)
+
+[Hystrix](https://github.com/Netflix/Hystrix)
 ### How to use
 #### Add dependency packages
 `pom.xml`:
 ```xml
 <dependencies>
+        <!--hystrix dependencies-->
+        <dependency>
+            <groupId>com.netflix.hystrix</groupId>
+            <artifactId>hystrix-core</artifactId>
+            <version>1.5.18</version>
+        </dependency>
+        <dependency>
+            <groupId>com.netflix.hystrix</groupId>
+            <artifactId>hystrix-javanica</artifactId>
+            <version>1.5.18</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-netflix-hystrix-dashboard</artifactId>
+            <version>2.1.1.RELEASE</version>
+        </dependency>
         <!--feign dependencies-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -58,12 +76,29 @@ spring:
         service-name: service-ribbon
       host: localhost
       port: 8500
+management:
+  endpoint:
+    health:
+      show-details: always
+feign:
+  client:
+    config:
+      feignName:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: full
+  hystrix:
+    enabled: true
 ```
 #### Add annotations
 In main java class, for example `RibbonApplication` :
 ```java
 @SpringBootApplication
 @EnableDiscoveryClient
+@EnableFeignClients
+@EnableCircuitBreaker
+// if you'd like to user dashboard, add this annotation
+@EnableHystrixDashboard
 public class RibbonApplication {
 
     public static void main(String[] args) {
@@ -75,7 +110,17 @@ public class RibbonApplication {
     RestTemplate restTemplate(){
         return new RestTemplate();
     }
-
+    // if you'd like to user dashboard, add below:
+    @Bean
+    public ServletRegistrationBean getServlet()
+    {
+        HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
+        ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
+        registrationBean.setLoadOnStartup(1);
+        registrationBean.addUrlMappings("/hystrix.stream");
+        registrationBean.setName("HystrixMetricsStreamServlet");
+        return registrationBean;
+    }
 }
 ```
 `@LoadBalanced` means this restTemplate bean will deal with load balance.
@@ -102,3 +147,24 @@ public interface BookstoreService {
     String getStorageContent();
 }
 ```
+To customize your fallback method, you can change `BookstoreService` to:
+```java
+@FeignClient(value = "service-bookstore",fallback = BookstoreServiceFailure.class)
+public interface BookstoreService {
+    @GetMapping(value = "/storages")
+    String getStorageContent();
+}
+```
+and add `BookstroreServiceFailure` class:
+```java
+@Service
+public class BookstoreServiceFailure implements BookstoreService{
+    @Override
+    public String getStorageContent()
+    {
+        return "service failed";
+    }
+}
+```
+This time, when you type `localhost:8091` in your browser,
+you may get `service failed` on it if `service-bookstore` is down.

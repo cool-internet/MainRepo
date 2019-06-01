@@ -9,3 +9,16 @@ spring:
         service-name: service-ribbon
       host: localhost
       port: 8500
+management:
+  endpoint:
+    health:
+      show-details: always
+feign:
+  client:
+    config:
+      feignName:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: full
+  hystrix:
+    enabled: true

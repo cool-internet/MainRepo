@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class BookstoreController {
     @Autowired
     BookstoreService bookstoreService;
+
     @GetMapping(value = "/")
     public String getStorages(){
         return bookstoreService.getStorageContent();
