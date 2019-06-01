@@ -5,3 +5,8 @@ More information is located at `CI` branch.
 More information is located at `registry-consul` branch.
 ## Load Balance & Circuit Breaker
 More information is located at `service-ribbon` branch.
+
+## Zuul
+
+More information is located at `service-zuul` branch.
+
