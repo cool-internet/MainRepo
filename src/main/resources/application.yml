@@ -1,11 +1,11 @@
 server:
-  port: 8088
+  port: 30334
 spring:
   application:
     name: service-auth
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://202.120.40.8:30333/dbhw
+    url: jdbc:mysql://localhost:30333/dbhw
     username: root
     password: 123456
   jpa:
@@ -18,7 +18,7 @@ spring:
         service-name: service-auth
         heartbeat:
           enabled: true
-      host: 202.120.40.8
+      host: localhost
       port: 30332
 management:
   endpoint:
