@@ -1,0 +1,26 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: service-auth
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://202.120.40.8:30333/dbhw
+    username: root
+    password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  cloud:
+    consul:
+      discovery:
+        service-name: service-auth
+        heartbeat:
+          enabled: true
+      host: 202.120.40.8
+      port: 30332
+management:
+  endpoint:
+    health:
+      show-details: always

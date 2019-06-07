@@ -1,12 +1,16 @@
-# MainRepo
-## CI Tool
-More information is located at `CI` branch.
-## Registry
-More information is located at `registry-consul` branch.
-## Load Balance & Circuit Breaker
-More information is located at `service-ribbon` branch.
-
-## Zuul
-
-More information is located at `service-zuul` branch.
+## Auth
+### api
+Click [Here](localhost:8088/swagger-ui.html).
+### note
+`application.yml` should change because consul's position:
+```yaml
+  cloud:
+    consul:
+      discovery:
+        service-name: service-auth
+        heartbeat:
+          enabled: true
+      host: 202.120.40.8
+      port: 30332
+```
 

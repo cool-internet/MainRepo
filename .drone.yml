@@ -1,7 +1,7 @@
 kind: pipeline
 name: default
 steps:
-#  just for test, will be modify later
+  #  just for test, will be modify later
   - name: test
     image: gcc
     commands:
