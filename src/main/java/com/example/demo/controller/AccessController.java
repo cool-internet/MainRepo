@@ -9,7 +9,6 @@ import com.example.demo.response.NormalResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -19,24 +18,28 @@ public class AccessController {
     @PostMapping(value = "/access")
     public NormalResponse register(@RequestBody RegistrationRequest request)
     {
-        if (userRepository.existsById(request.getUsername())){
-            User user = userRepository.getOne(request.getUsername());
-            if(user.getPassword().equals(request.getPassword()))
-            {
+        try {
+            if (userRepository.existsById(request.getUsername())) {
+                User user = userRepository.getOne(request.getUsername());
+                if (user.getPassword().equals(request.getPassword())) {
+                    String token = CustomJWT.generateToken(user.getUsername());
+                    JSONObject body = new JSONObject();
+                    body.put("token", token);
+                    return NormalResponse.login(body);
+                }
+                return NormalResponse.error();
+            } else {
+                User user = new User(request.getUsername(), request.getPassword());
+                userRepository.save(user);
                 String token = CustomJWT.generateToken(user.getUsername());
                 JSONObject body = new JSONObject();
-                body.put("token",token);
+                body.put("token", token);
                 return NormalResponse.login(body);
             }
-            return NormalResponse.error();
         }
-        else {
-            User user = new User(request.getUsername(),request.getPassword());
-            userRepository.save(user);
-            String token = CustomJWT.generateToken(user.getUsername());
-            JSONObject body = new JSONObject();
-            body.put("token",token);
-            return NormalResponse.login(body);
+        catch (Exception e){
+            System.out.println(e.getMessage());
         }
+        return NormalResponse.error();
     }
 }
