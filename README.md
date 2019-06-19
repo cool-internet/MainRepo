@@ -10,3 +10,5 @@ More information is located at `service-ribbon` branch.
 
 More information is located at `service-zuul` branch.
 
+## Wordladder
+More information is located at `service-wordladder` branch.

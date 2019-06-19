@@ -1,9 +1,0 @@
-kind: pipeline
-name: default
-steps:
-#  just for test, will be modify later
-  - name: test
-    image: gcc
-    commands:
-      - make
-      - make test
