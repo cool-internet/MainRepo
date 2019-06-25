@@ -1,14 +1,12 @@
-# MainRepo
-## CI Tool
-More information is located at `CI` branch.
-## Registry
-More information is located at `registry-consul` branch.
-## Load Balance & Circuit Breaker
-More information is located at `service-ribbon` branch.
+# Service-File
+## Comment
+A service which can accecpt multiple files in json format，and store them in the mysql database    
+The strcuture of the database is：    
+id(filename) content                
+You can get the file content by its name.
+## API
+- Upload(MultipartFile):void   POST /file/upload     
+- Get(String):String           GET  /file/{id}
 
-## Zuul
-
-More information is located at `service-zuul` branch.
-
-## Wordladder
-More information is located at `service-wordladder` branch.
+## Function
+This service can store and provide file data source for other services.  
