@@ -21,3 +21,6 @@ zuul:
     bookstore:
       path: /api-bookstore/**
       serviceId: service-bookstore
+    wordladder:
+      path: /wordladder/*
+      serviceId: service-wordladder
