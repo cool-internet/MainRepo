@@ -10,5 +10,19 @@ More information is located at `service-ribbon` branch.
 
 More information is located at `service-zuul` branch.
 
-## Wordladder
+## Services
+
+### Wordladder
+
 More information is located at `service-wordladder` branch.
+
+### File
+
+More information is located at `service-file` branch.
+
+### BookStorage
+
+[e-bookstore](https://github.com/2quarius/e-bookstore/tree/master/demo)
+
+### 
+
