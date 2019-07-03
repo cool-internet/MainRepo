@@ -6,6 +6,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.example.demo.jwt.CustomJWT;
 import com.example.demo.response.NormalResponse;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 public class AuthController {
-    @GetMapping(value = "/auth")
+    @PostMapping(value = "/auth")
     public NormalResponse isLogin(HttpServletRequest httpServletRequest)
     {
         try {
